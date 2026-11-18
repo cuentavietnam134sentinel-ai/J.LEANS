@@ -48,14 +48,8 @@ function renderGrid(container) {
 }
 
 function initHeroBackground(url) {
-    const heroBg = document.getElementById('heroBg')
-    const hero = document.getElementById('hero')
-    if (heroBg && url) {
-        heroBg.style.backgroundImage = `url('${url}')`
-        setTimeout(() => {
-            hero.classList.add('loaded')
-        }, 100)
-    }
+    // No mostrar la última foto como fondo del hero, usar color normal
+    // (Función mantenida para compatibilidad pero no hace nada)
 }
 
 function initLightbox() {
