@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J.LEANS · Fotografía de Paisaje</title>
+    <meta name="description" content="Álbum de fotografía de paisaje por Juan Manuel.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header id="header" class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">J.LEANS</a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#album" class="nav-link">Álbum</a>
+                <a href="#about" class="nav-link">Quién soy</a>
+                <a href="#contact" class="nav-link">Contacto</a>
+            </nav>
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">J.LEANS</h1>
+            <p class="hero-subtitle">Fotografía de Paisaje</p>
+            <a href="#album" class="hero-scroll">Explorar álbum</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Album / Gallery Section -->
+        <section id="album" class="section album-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Álbum</h2>
+                    <p class="section-desc">Instantes capturados en silencio.</p>
+                </div>
+                <div class="album-grid" id="albumGrid">
+                    <!-- Dynamic Photos Loaded via JS -->
+                    <div class="album-loading">Cargando instantes...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="container about-container">
+                <div class="about-content">
+                    <span class="section-tag">Quién soy</span>
+                    <h2 class="section-title">Juan Manuel</h2>
+                    <p class="about-text">
+                        Entiendo la fotografía de paisaje como un ejercicio de escucha y paciencia. Cada imagen nace de la quietud, buscando capturar la esencia de la luz sobre la tierra antes de que el tiempo la transforme. Sin artificios ni excesos, solo el diálogo sincero entre el espacio y la mirada.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container contact-container">
+                <span class="section-tag">Contacto</span>
+                <h2 class="section-title">Hablemos</h2>
+                <p class="contact-desc">Para consultas, proyectos o impresiones, puedes escribirme directamente.</p>
+                <div class="contact-links">
+                    <a href="mailto:contacto@jleans.com" class="contact-btn primary">Enviar Email</a>
+                    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="contact-btn secondary">WhatsApp</a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="contact-btn secondary">Instagram</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>&copy; 2026 J.LEANS &middot; Juan Manuel</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">&times;</button>
+        <button class="lightbox-prev" id="lightboxPrev" aria-label="Anterior">&larr;</button>
+        <button class="lightbox-next" id="lightboxNext" aria-label="Siguiente">&rarr;</button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="Fotografía ampliada">
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="admin-modal">
+        <div class="admin-card">
+            <div class="admin-header">
+                <h2>Panel de Administración</h2>
+                <button id="adminClose" class="admin-close">&times;</button>
+            </div>
+            
+            <!-- Login View -->
+            <div id="adminLoginView" class="admin-view">
+                <form id="loginForm" class="admin-form">
+                    <div class="form-group">
+                        <label for="adminEmail">Email</label>
+                        <input type="email" id="adminEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword">Contraseña</label>
+                        <input type="password" id="adminPassword" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Ingresar</button>
+                    <p id="loginError" class="form-error"></p>
+                </form>
+            </div>
+
+            <!-- Dashboard View -->
+            <div id="adminDashboardView" class="admin-view" style="display: none;">
+                <div class="admin-actions-bar">
+                    <button id="logoutBtn" class="btn-secondary">Cerrar Sesión</button>
+                </div>
+                
+                <div class="upload-box">
+                    <h3>Subir Nueva Fotografía</h3>
+                    <form id="uploadForm" class="admin-form">
+                        <div class="form-group">
+                            <label for="photoFile">Seleccionar Imagen</label>
+                            <input type="file" id="photoFile" accept="image/*" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="photoTitle">Título (opcional)</label>
+                            <input type="text" id="photoTitle" placeholder="Título o lugar">
+                        </div>
+                        <button type="submit" id="uploadBtn" class="btn-primary">Subir y Comprimir</button>
+                        <progress id="uploadProgress" value="0" max="100" style="width: 100%; display: none; margin-top: 10px;"></progress>
+                    </form>
+                </div>
+
+                <div class="manage-box">
+                    <h3>Fotografías Actuales</h3>
+                    <div id="adminPhotosList" class="admin-photos-list">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
